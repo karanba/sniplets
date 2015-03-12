@@ -8,21 +8,35 @@
         <script>
             angular.module('SN', []).controller('myCtrl', myCtrl);
             
-            function myCtrl($scope){
+            function myCtrl($scope, $interval){
                 $scope.people = [
                     {name: 'Nick', age: 10},
                     {name: 'Mary', age: 2},
                     {name: 'Daniel', age: 5},
                     {name: 'Frenk', age: 8}
                 ];
+                $scope.filter = 'number';
+                $scope.callMe = function(p){
+                    return p.name;
+                };
+                $scope.date = new Date();
+                $interval(function(){
+                    $scope.date = new Date();
+                }, 1000)
             }
         </script>
     </head>
     <body ng-app="SN">
         <div class="container">
             <div ng-controller="myCtrl">
+                <div class="jumbotron clearfix">
+                    <h3>
+                        <span class="glyphicon glyphicon-time pull-right"></span>
+                        {{date | date:'yyyy MMMM dd EEE  HH:mm:ss'}}
+                    </h3>
+                </div>
                 <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="p in people | orderBy:'-age'">{{p.name}} <span class="badge">{{p.age}}</span></li>
+                    <li class="list-group-item" ng-repeat="p in people | orderBy:'-age'" ng-class="['active', callMe(p)]">{{p.name}} <span class="badge">{{p.age}}</span></li>
                 </ul>
             </div>
         </div>
