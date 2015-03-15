@@ -1,0 +1,16 @@
+<div class="pi-gr">
+    <div class="pi-gr-content">
+        <div class="pi-gr-hd">
+            <div class="pi-gr-col" ng-repeat="c in columns">Column {{c}}</div>
+        </div>
+        <div class="pi-gr-bd" style="height: calc(100% - 63px);">
+            <div class="pi-grid-row clearfix" ng-repeat="r in rows">
+                <div class="pi-grid-cell" ng-repeat="c in columns">{{r}}x{{c}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pi-gr-ft">
+        Footer
+    </div>
+</div>
